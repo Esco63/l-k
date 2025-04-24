@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L&K KFZ Meisterbetrieb GbR</title>
+    <link rel="icon" href="assets/logo.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              fadeIn: "fadeIn 1s ease-out forwards",
+              fadeInUp: "fadeInUp 1.3s ease-out forwards",
+              wackel: "wackel 0.5s infinite ease-in-out"
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              fadeInUp: {
+                "0%": { opacity: "0", transform: "translateY(40px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              wackel: {
+                "0%, 100%": { transform: "translate(-40%, -50%) rotate(0deg)" },
+                "25%": { transform: "translate(-40%, -50%) rotate(4deg)" },
+                "50%": { transform: "translate(-40%, -50%) rotate(-4deg)" },
+                "75%": { transform: "translate(-40%, -50%) rotate(2deg)" }
+              }
+            }
+          }
+        }
+      };
+    </script>
+    <!-- Orbitron Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+      .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+    </style>
+  </head>
+
+  <body class="bg-black text-white font-sans">
+    <!-- Navbar -->
+    <header class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] md:w-[58%] z-50 rounded-full border border-orange-500/30 shadow-[0_0_25px_#ea580c30] backdrop-blur-md bg-black/60 px-4 py-2 flex items-center justify-center">      <button id="menuToggle" class="md:hidden text-orange-500 text-3xl focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <!-- Desktop: Alles auf einer Linie -->
+      <div class="hidden md:flex items-center gap-4 text-lg text-white font-semibold tracking-wide">
+        <!-- Links direkt am Logo -->
+        <a href="#leistungen" class="hover:text-orange-500 transition-all duration-300">Leistungen</a>
+        <a href="#termine" class="hover:text-orange-500 transition-all duration-300">Termin</a>
+
+        <!-- Logo mittig -->
+        <img src="assets/navlogo.gif" alt="Nav Logo" class="h-20 w-auto neon-flash brightness-[1.2] mx-4" />
+
+        <!-- Rechts direkt am Logo -->
+        <a href="#kontakt" class="hover:text-orange-500 transition-all duration-300">Kontakt</a>
+        <a href="#impressum" class="hover:text-orange-500 transition-all duration-300">Impressum</a>
+      </div>
+    </header>
+
+    <!-- Mobile-Dropdown-Menü -->
+    <div id="mobileMenu" class="hidden md:hidden fixed top-[90px] left-1/2 transform -translate-x-1/2 w-[90%] bg-zinc-900 rounded-2xl shadow-lg border border-orange-500 z-40 p-4 space-y-4 text-center text-white font-semibold">
+      <a href="#leistungen" class="block hover:text-orange-500">Leistungen</a>
+      <a href="#termine" class="block hover:text-orange-500">Termin</a>
+      <a href="#kontakt" class="block hover:text-orange-500">Kontakt</a>
+      <a href="#impressum" class="block hover:text-orange-500">Impressum</a>
+    </div>
+
+    <!-- JS für Menü-Öffnung -->
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden bg-black">
+      <img src="assets/landing.png" alt="L&K Werkstatt" class="absolute inset-0 w-full h-full object-cover scale-[1] object-[center_20%] brightness-75 z-0" />
+      
+      <div class="z-10 flex flex-col items-center justify-center animate-fadeInUp mt-[430px] space-y-6">
+        <!-- Edler Orbitron-Text ohne Animation -->
+        <p class="text-lg md:text-2xl text-white font-title font-bold tracking-wide drop-shadow-[0_0_10px_#ea580c]">
+          Ihr Auto in besten Händen – TÜV, Reparatur & mehr!
+        </p>
+
+        <!-- Button mit Glow-Puls -->
+        <a href="#termine"
+          class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 
+                  text-white px-10 py-4 rounded-full text-lg md:text-xl font-title font-bold 
+                  shadow-[0_0_25px_#ea580c60] ring-2 ring-orange-500/30 hover:ring-orange-500/60 
+                  animate-pulse hover:scale-110 transition-all duration-500">
+          🚗 Jetzt Termin sichern
+        </a>
+      </div>
+    </section>
+
+    <!-- Leistungen -->
+    <section id="leistungen" class="py-32 px-6 bg-black">
+      <h2 class="text-4xl text-center font-title font-bold text-orange-500 mb-16 tracking-wider glow-orange">
+        Unsere Leistungen
+      </h2>
+      <div class="relative max-w-6xl mx-auto flex items-center">
+        
+        <!-- Swiper Navigation Arrows Outside -->
+        <div class="swiper-button-prev custom-swiper-prev"></div>
+
+        <div class="swiper-container w-full">
+          <div class="swiper-wrapper">
+
+            <!-- Slide: Reifenwechsel -->
+            <div class="swiper-slide">
+              <div class="slide-content glass p-6 rounded-2xl transition-all duration-300 text-center">
+                <img src="assets/images/reifen.png" alt="Reifenwechsel" class="rounded-xl w-full h-40 object-cover mb-6" />
+                <img src="assets/icons/reifen.png" alt="Icon" class="w-10 h-10 neon-icon mb-5 mx-auto block" />
+                <h3 class="text-lg font-title text-white font-semibold leading-tight mb-5">Reifenwechsel</h3>
+                <p class="text-sm text-zinc-300 leading-snug text-center">
+                  Abgefahrene Reifen? Verlieren Sie nicht den Grip! Vereinbaren Sie rechtzeitig einen Termin für Ihren Reifenwechsel – für mehr Sicherheit auf jeder Strecke.
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide: Inspektion -->
+            <div class="swiper-slide">
+              <div class="slide-content glass p-6 rounded-2xl transition-all duration-300 text-center">
+                <img src="assets/images/Inspektion.png" alt="Inspektion" class="rounded-xl w-full h-40 object-cover mb-6" />
+                <img src="assets/icons/inspektion.png" alt="Icon" class="w-10 h-10 neon-icon mb-5 mx-auto block" />
+                <h3 class="text-lg font-title text-white font-semibold leading-tight mb-5">Inspektion</h3>
+                <p class="text-sm text-zinc-300 leading-snug text-center">
+                  Wer sein Auto liebt, lässt es regelmäßig durchchecken. Vertrauen Sie auf unsere Erfahrung und sichern Sie sich sorgenfreie Fahrten – jetzt Inspektionstermin vereinbaren!
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide: Bremsenservice -->
+            <div class="swiper-slide">
+              <div class="slide-content glass p-6 rounded-2xl transition-all duration-300 text-center">
+                <img src="assets/images/Bremse.png" alt="Bremsenservice" class="rounded-xl w-full h-40 object-cover mb-6" />
+                <img src="assets/icons/bremse.png" alt="Icon" class="w-10 h-10 neon-icon mb-5 mx-auto block" />
+                <h3 class="text-lg font-title text-white font-semibold leading-tight mb-5">Bremsenservice</h3>
+                <p class="text-sm text-zinc-300 leading-snug text-center">
+                  Ihre Bremsen lassen nach? Warten Sie nicht auf den Notfall. Lassen Sie Ihre Bremsen bei uns prüfen – für Sie und alle anderen Verkehrsteilnehmer.
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide: Ölwechsel -->
+            <div class="swiper-slide">
+              <div class="slide-content glass p-6 rounded-2xl transition-all duration-300 text-center">
+                <img src="assets/images/Öl-service.png" alt="Ölwechsel" class="rounded-xl w-full h-40 object-cover mb-6" />
+                <img src="assets/icons/öl.png" alt="Icon" class="w-10 h-10 neon-icon mb-5 mx-auto block" />
+                <h3 class="text-lg font-title text-white font-semibold leading-tight mb-5">Ölwechsel</h3>
+                <p class="text-sm text-zinc-300 leading-snug text-center">
+                  Motoröl ist das Lebenselixier Ihres Motors. Schützen Sie ihn vor Verschleiß und Schäden – jetzt Ölwechsel vereinbaren und länger sorgenfrei fahren.
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide: Karosseriearbeiten -->
+            <div class="swiper-slide">
+              <div class="slide-content glass p-6 rounded-2xl transition-all duration-300 text-center">
+                <img src="assets/images/lackieren.png" alt="Karosseriearbeiten" class="rounded-xl w-full h-40 object-cover mb-6" />
+                <img src="assets/icons/lackieren.png" alt="Icon" class="w-10 h-10 neon-icon mb-5 mx-auto block" />
+                <h3 class="text-lg font-title text-white font-semibold leading-tight mb-5">Karosseriearbeiten</h3>
+                <p class="text-sm text-zinc-300 leading-snug text-center">
+                  Ein kleiner Kratzer? Eine große Delle? Wir bringen Ihr Fahrzeug wieder in Topform – optisch wie technisch. Jetzt unverbindlich beraten lassen!
+                </p>
+              </div>
+            </div>
+
+            <!-- Slide: Fahrzeugaufbereitung -->
+            <div class="swiper-slide">
+              <div class="slide-content glass p-6 rounded-2xl transition-all duration-300 text-center">
+                <img src="assets/images/aufbereitung.png" alt="Fahrzeugaufbereitung" class="rounded-xl w-full h-40 object-cover mb-6" />
+                <img src="assets/icons/aufbereitung.png" alt="Icon" class="w-10 h-10 neon-icon mb-5 mx-auto block" />
+                <h3 class="text-lg font-title text-white font-semibold leading-tight mb-5">Fahrzeugaufbereitung</h3>
+                <p class="text-sm text-zinc-300 leading-snug text-center">
+                  Gönnen Sie Ihrem Auto eine Wellnesskur – innen wie außen. Sauber, gepflegt und wie neu – ideal auch vor dem Verkauf oder der Leasingrückgabe!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Arrow -->
+        <div class="swiper-button-next custom-swiper-next"></div>
+      </div>
+    </section>
+
+    <!-- Swiper + Styles + Logic -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+
+    <style>
+      .swiper-container {
+        overflow: hidden;
+        padding-bottom: 2rem;
+      }
+
+      .swiper-wrapper {
+        align-items: stretch;
+      }
+
+      .swiper-slide {
+        border-radius: 1rem;
+        overflow: hidden;
+        height: auto !important;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+      }
+
+      .slide-content {
+        min-height: 500px;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+        transform: scale(0.9);
+        opacity: 0.4;
+      }
+
+      .swiper-slide-active .slide-content {
+        transform: scale(1.05);
+        opacity: 1;
+        box-shadow: 0 0 20px 5px #ea580c66;
+      }
+
+      .swiper-slide-active:hover .slide-content {
+        box-shadow: 0 0 30px 12px #ea580cb3;
+      }
+
+      .swiper-slide img {
+        filter: brightness(0.6);
+        transition: filter 0.3s ease-in-out;
+      }
+
+      .swiper-slide-active img {
+        filter: brightness(1);
+      }
+
+      @keyframes neon-blink {
+        0%, 100% {
+          filter: drop-shadow(0 0 5px #ea580c) brightness(1.5);
+        }
+        50% {
+          filter: drop-shadow(0 0 15px #ea580c) brightness(2);
+        }
+      }
+
+      .neon-flash {
+        animation: neon-blink 1.2s infinite alternate;
+      }
+
+      .custom-swiper-prev,
+      .custom-swiper-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 50;
+        width: 50px;
+        height: 50px;
+        color: #ea580c;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .custom-swiper-prev:hover,
+      .custom-swiper-next:hover {
+        background-color: rgba(234, 88, 12, 0.8);
+      }
+
+      .custom-swiper-prev::after,
+      .custom-swiper-next::after {
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .custom-swiper-prev {
+        left: -60px;
+      }
+
+      .custom-swiper-next {
+        right: -60px;
+      }
+    </style>
+
+    <script>
+      const swiper = new Swiper('.swiper-container', {
+        loop: true,
+        centeredSlides: true,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        slidesPerView: 3,
+        spaceBetween: 24,
+        allowTouchMove: true,
+        navigation: {
+          nextEl: '.custom-swiper-next',
+          prevEl: '.custom-swiper-prev',
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          }
+        },
+        on: {
+          slideChangeTransitionEnd: function () {
+            document.querySelectorAll('.neon-icon').forEach(icon => {
+              icon.classList.remove('neon-flash');
+            });
+            const activeIcon = document.querySelector('.swiper-slide-active .neon-icon');
+            if (activeIcon) {
+              activeIcon.classList.add('neon-flash');
+            }
+          }
+        }
+      });
+
+      window.addEventListener('load', () => {
+        const activeIcon = document.querySelector('.swiper-slide-active .neon-icon');
+        if (activeIcon) {
+          activeIcon.classList.add('neon-flash');
+        }
+      });
+    </script>
+        
+        <section id="termine" class="relative bg-zinc-800 py-24 px-6 overflow-hidden">
+          <!-- Hintergrund-Icons -->
+          <div class="absolute inset-0 opacity-10 z-0 pointer-events-none bg-[url('assets/icons/bg-icons.png')] bg-repeat bg-[length:80px_80px]"></div>
+        
+          <h2 class="relative text-4xl text-center font-title font-bold text-orange-500 mb-12 tracking-wider glow-orange z-10">
+            Termin vereinbaren
+          </h2>
+        
+          <form class="relative glass max-w-xl mx-auto grid gap-5 p-8 rounded-2xl shadow-xl z-10 bg-black/70">
+            <input type="text" placeholder="Name" class="p-3 rounded bg-black border border-orange-500 text-white font-title focus:outline-none focus:ring-2 focus:ring-orange-500" />
+            <input type="text" placeholder="Fahrzeug (z.B. BMW 320d)" class="p-3 rounded bg-black border border-orange-500 text-white font-title focus:outline-none focus:ring-2 focus:ring-orange-500" />
+            <input type="tel" placeholder="Telefonnummer" class="p-3 rounded bg-black border border-orange-500 text-white font-title focus:outline-none focus:ring-2 focus:ring-orange-500" />
+            <input type="email" placeholder="E-Mail" class="p-3 rounded bg-black border border-orange-500 text-white font-title focus:outline-none focus:ring-2 focus:ring-orange-500" />
+            <input type="datetime-local" class="p-3 rounded bg-black border border-orange-500 text-white font-title focus:outline-none focus:ring-2 focus:ring-orange-500" />
+            <button type="submit" class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-3 rounded-full text-lg font-title font-bold w-full transition-all duration-300 shadow-md hover:shadow-orange-500 transform hover:scale-110 animate-pulse">
+              📩 Termin absenden
+            </button>
+          </form>
+        </section>
+
+        <section id="hu-erinnerung" class="bg-zinc-800 py-24 px-6 overflow-hidden">
+          <div class="relative max-w-xl mx-auto z-10">
+            <h2 class="text-4xl text-center font-title font-bold text-orange-500 mb-12 tracking-wider glow-orange">
+        </section>
+
+    <!-- Map -->
+    <section class="py-24 px-6 bg-black relative">
+      <h2 class="text-4xl text-center font-title font-bold text-orange-500 mb-6 flex items-center justify-center gap-2 glow-orange">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-orange-400" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
+        </svg>
+        Unsere Werkstatt in Schwerin
+      </h2>
+
+      <div class="max-w-6xl mx-auto mt-10 rounded-2xl overflow-hidden shadow-[0_0_30px_5px_#ea580c] border border-orange-500 backdrop-blur-md bg-white/5">
+        <div class="w-full h-[500px]">
+          <iframe
+            class="w-full h-full grayscale-[50%] brightness-[0.85] contrast-[1.2] saturate-[1.3] map-frame"
+            src="https://www.google.com/maps?q=Einsteinstraße+Schwerin+L%26K+GbR&output=embed"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+        <!-- HU-Erinnerung Slide-In Button -->
+        <button id="openSlide" class="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-orange-600 hover:bg-orange-700 text-white shadow-lg hover:scale-110 transition-all duration-300">
+          <img src="assets/tüv.png" alt="HU Icon" class="w-12 h-12" />
+        </button>
+            
+        <!-- Slide-In Panel -->
+        <div id="slideMenu" class="fixed top-0 right-0 h-full w-[90%] sm:w-[420px] bg-zinc-900 text-white z-50 transform translate-x-full transition-transform duration-500 ease-in-out shadow-2xl border-l-4 border-orange-500 overflow-y-auto">
+          <div class="p-6 relative">
+            <button id="closeSlide" class="absolute top-4 right-4 text-white text-2xl hover:text-orange-500">&#10006;</button>
+            <div class="flex justify-center mb-6">
+              <img src="assets/tüv.png" alt="TÜV Erinnerung" class="w-20 h-20 animate-wiggle" />
+            </div>
+            <h2 class="text-3xl font-title font-bold text-orange-500 mb-6 text-center">HU-Erinnerung</h2>
+            <form class="grid gap-5">
+              <input type="text" placeholder="Kennzeichen (z. B. SN-AB 123)" class="p-3 rounded bg-black border border-orange-500 text-white font-title focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <input type="text" placeholder="Name" class="p-3 rounded bg-black border border-orange-500 text-white font-title focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <input type="email" placeholder="E-Mail-Adresse" class="p-3 rounded bg-black border border-orange-500 text-white font-title focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <input type="date" placeholder="HU-Termin" class="p-3 rounded bg-black border border-orange-500 text-white font-title focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <label class="flex items-start gap-3 text-sm text-zinc-300">
+                <input type="checkbox" required class="mt-1 accent-orange-500" />
+                Ich stimme der Verarbeitung meiner Daten gemäß der
+                <a href="#impressum" class="underline hover:text-orange-500 ml-1">Datenschutzerklärung</a> zu.
+              </label>
+              <button type="submit" class="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-3 rounded-full text-lg font-title font-bold w-full transition-all duration-300 shadow-md hover:shadow-orange-500 transform hover:scale-110">
+                📬 Erinnerung speichern
+              </button>
+            </form>
+          </div>
+        </div>
+
+    <style>
+      .map-frame {
+        transition: transform 0.6s ease, filter 0.4s ease;
+      }
+
+      .map-frame:hover {
+        transform: scale(1.02) rotate(-0.3deg);
+        filter: brightness(1) saturate(1.5);
+      }
+    </style>
+
+    <script>
+      const openSlide = document.getElementById('openSlide');
+      const closeSlide = document.getElementById('closeSlide');
+      const slideMenu = document.getElementById('slideMenu');
+
+      openSlide.addEventListener('click', () => {
+        slideMenu.classList.remove('translate-x-full');
+      });
+
+      closeSlide.addEventListener('click', () => {
+        slideMenu.classList.add('translate-x-full');
+      });
+    </script>
+
+
+
+        <!-- Footer -->
+        <footer id="kontakt" class="bg-zinc-900 py-12 px-6 text-center text-sm text-zinc-300">
+          <h2 class="text-xl font-title font-bold text-orange-500 mb-4 glow-orange">Kontakt & Öffnungszeiten</h2>
+          <p class="font-title">Telefon: 0123 456789<br>E-Mail: info@lk-kfz.de<br>Mo–Fr: 08:00–18:00 Uhr</p>
+          <p class="mt-4 text-xs text-zinc-500">© 2025 L&K KFZ Meisterbetrieb GbR</p>
+        </footer>
