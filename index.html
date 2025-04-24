@@ -49,7 +49,9 @@
 
   <body class="bg-black text-white font-sans">
     <!-- Navbar -->
-    <header class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] md:w-[58%] z-50 rounded-full border border-orange-500/30 shadow-[0_0_25px_#ea580c30] backdrop-blur-md bg-black/60 px-4 py-2 flex items-center justify-center">      <button id="menuToggle" class="md:hidden text-orange-500 text-3xl focus:outline-none">
+    <header class="fixed top-6 left-1/2 transform -translate-x-1/2 w-[95%] md:w-[58%] z-50 md:rounded-full border border-orange-500/30 shadow-[0_0_25px_#ea580c30] backdrop-blur-md bg-black/60 px-4 py-2 flex items-center justify-center md:justify-center justify-between">
+      <!-- Burger rechts auf Mobilgeräten -->
+      <button id="menuToggle" class="md:hidden absolute right-4 text-orange-500 text-3xl focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -71,7 +73,7 @@
     </header>
 
     <!-- Mobile-Dropdown-Menü -->
-    <div id="mobileMenu" class="hidden md:hidden fixed top-[90px] left-1/2 transform -translate-x-1/2 w-[90%] bg-zinc-900 rounded-2xl shadow-lg border border-orange-500 z-40 p-4 space-y-4 text-center text-white font-semibold">
+    <div id="mobileMenu" class="hidden md:hidden fixed top-[90px] right-4 w-[85%] bg-white text-black rounded-2xl shadow-xl border border-orange-300 z-40 p-4 space-y-4 text-center font-semibold">
       <a href="#leistungen" class="block hover:text-orange-500">Leistungen</a>
       <a href="#termine" class="block hover:text-orange-500">Termin</a>
       <a href="#kontakt" class="block hover:text-orange-500">Kontakt</a>
